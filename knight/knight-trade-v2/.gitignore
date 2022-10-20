@@ -1,0 +1,8 @@
+.idea/*
+*.iml
+*/target/*
+*/logs/*
+logs/*
+*.log
+*.log.gz
+*/*application-prod.yml

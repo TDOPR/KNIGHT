@@ -1,0 +1,68 @@
+server:
+  port: 8849
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #交易数据库
+      url: jdbc:mysql://localhost:3306/knighttrade?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password:
+      initial-size: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+  redis:
+    database: 0
+    host: 192.168.2.123
+    port: 6379
+    password:      # 密码（默认为空）
+    timeout: 6000ms  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
+
+mybatis-plus:
+  mapper-locations: classpath*:/mappers/*.xml
+  typeAliasesPackage: com.defi.entity
+  global-config:
+    id-type: 0
+    db-column-underline: true
+
+eth:
+  enabled: true
+  confirm_block_no: 3
+  main:
+    address: "0xe034dcb8836b3bd6f2d1a8d617d343aa60cdf373"
+  collect:
+    address: "0x726431b5a3FcF8c33EbD0C2698fe71369E5f3193"
+  gas:
+    limit: 50000
+  point:
+    #bsc正式网
+#    url: https://bsc-dataseed2.defibit.io
+    #bsc测试网
+#    url: https://data-seed-prebsc-1-s2.binance.org:8545
+    url: https://bsctestapi.terminet.io/rpc
+    #heco测试网
+#    url: https://http-testnet.hecochain.com
+
+
+  swap_pair: "0x3e3d8e1c2D8e82B872d5E113db345bBCC4B8A815"
+  swap_router: "0x10ed43c718714eb63d5aa57b78b54704e256024e"
+  swap_token: "0x55d398326f99059fF775485246999027B3197955"
+
+# 钱包加密秘钥
+wallet:
+  aes:
+    key: 1!q@i#q$i%lo^ia7239(*^224b&u*(;
+
+logging:
+  config: classpath:logback-spring.xml

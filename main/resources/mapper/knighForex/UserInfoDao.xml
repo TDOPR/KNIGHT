@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.demo.dao.UserInfoDao">
+
+    <resultMap type="io.renren.modules.demo.entity.UserInfoEntity" id="userInfoMap">
+        <result property="userId" column="user_id"/>
+        <result property="userAddress" column="user_address"/>
+        <result property="referAddress" column="refer_address"/>
+        <result property="betVal" column="bet_val"/>
+        <result property="botLevel" column="bot_level"/>
+        <result property="allBuy" column="all_buy"/>
+    </resultMap>
+
+
+</mapper>

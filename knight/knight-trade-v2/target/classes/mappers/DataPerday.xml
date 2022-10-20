@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.defi.mapper.DataPerdayDao">
+
+
+
+    <!-- 增加账户资金 -->
+    <update id="addAmount">
+        UPDATE `data_perday` SET amount = amount + #{amount}
+
+    </update>
+
+    <update id="substractAmountByAid">
+        UPDATE `data_perday` SET amount = amount + #{amount} WHERE id = 1
+
+    </update>
+    <!-- 扣减账户资金 -->
+    <update id="subtractAmount">
+        UPDATE `account` SET balance_amount = balance_amount - #{amount}
+
+    </update>
+
+    <select id="selectStaticIncomeUserList" resultType="java.util.Map" >
+        SELECT
+            uid,
+            sum( balance_amount ) AS amount
+        FROM
+            account
+        WHERE
+            coin_id IN ( 1, 2 )
+        GROUP BY
+            uid
+    </select>
+
+<!--    <select id="selectAllAmount" resultType="java.util.Integer" >-->
+<!--        SELECT-->
+<!--            amount-->
+<!--        FROM-->
+<!--            data_perday-->
+
+<!--    </select>-->
+
+
+    <!--    <select id="selectSuperUserList" resultType="java.util.List" >-->
+<!--        SELECT-->
+<!--            uid-->
+<!--        FROM-->
+<!--            account-->
+<!--        WHERE-->
+<!--            coin_id IN ( 1, 2 )-->
+<!--        GROUP BY-->
+<!--            uid-->
+<!--    </select>-->
+
+    <update id="addPendingAmountByAid">
+        UPDATE `account` SET pending_amount = pending_amount + #{amount}
+        WHERE uid = #{userId} and coin_id = #{coinId}
+    </update>
+
+</mapper>
